@@ -5,6 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-to jest strona konta użytkownika
+
+    <form method="POST"> {% csrf_token %}
+        <input type="text" name="username" placeholder="nazwa użytkownika">
+        <input type="password" name="password" placeholder="hasło">
+        <input type="submit" value="Zaloguj">
+
+    </form>
+
 </body>
 </html>
