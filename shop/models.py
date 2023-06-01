@@ -21,8 +21,8 @@ class Product(models.Model):
     # slug = models.SlugField(max_length=255)
     #in_stock?
 
-    class Meta:
-        verbose_name_plural = 'Products'
+class Meta:
+    verbose_name_plural = 'Products'
 
 
 # class User(models.Model):
