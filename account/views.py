@@ -17,13 +17,12 @@ def home(request):
     )
 
 def login_view(request):
-    if request.method=="GET":
+    if request.method == "GET":
         return render(
             request,
             'account/login.html',
-
     )
-    elif request.metod=="POST":
+    elif request.method == "POST":
         data = request.POST
         username = data.get('username')
         password = data.get('password')
@@ -32,7 +31,7 @@ def login_view(request):
         if user:
             login(request, user=user)
 
-        return redirect('account:home')
+        return redirect('account:home_view')
 
 def register_view(request):
     if request.method == "GET":
@@ -51,9 +50,9 @@ def register_view(request):
                 username=username,
                 password=password1
             )
-        return redirect('account:login_view')
+        return redirect('account:login')
 
 
 def logout_view(request):
     logout(request)
-    return redirect('account:home')
+    return redirect('account:login')

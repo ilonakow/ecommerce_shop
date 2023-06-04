@@ -6,15 +6,15 @@
 </head>
 <body>
 
+
     <form method="POST"> {% csrf_token %}
         <input type="text" name="username" placeholder="nazwa użytkownika">
         <input type="password" name="password" placeholder="hasło">
         <input type="submit" value="Zaloguj">
-
     </form>
 
     <button>
-<a href="{% account:register_view %}">Zarejestruj</a>
+        <a href="{% url 'account:register' %}">Zarejestruj</a>
     </button>
 </body>
 </html>
