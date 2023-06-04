@@ -4,11 +4,11 @@ from django.contrib.auth import get_user_model
 
 # Create your views here.
 User = get_user_model()
-def account(request):
-    return render(
-        request,
-        'account/account.html',
-    )
+# def account(request):
+#     return render(
+#         request,
+#         'account/login.html',
+#     )
 
 def home(request):
     return render(
@@ -20,7 +20,7 @@ def login_view(request):
     if request.method=="GET":
         return render(
             request,
-            'account/account.html',
+            'account/login.html',
 
     )
     elif request.metod=="POST":
