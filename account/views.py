@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import get_user_model
 
 # Create your views here.
-
+User = get_user_model()
 def account(request):
     return render(
         request,
@@ -32,6 +33,25 @@ def login_view(request):
             login(request, user=user)
 
         return redirect('account:home')
+
+def register_view(request):
+    if request.method == "GET":
+        return render(
+            request,
+            'account/register.html',
+            )
+    else:
+        data = request.POST
+        username = data.get('username')
+        password1 = data.get('password1')
+        password2 = data.get('password2')
+
+        if password1 == password2:
+            User.objects.create_user(
+                username=username,
+                password=password1
+            )
+        return redirect('account:login_view')
 
 
 def logout_view(request):
