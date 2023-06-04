@@ -1,9 +1,13 @@
+from django.contrib.auth import get_user_model
 from django.db import models
+
+
+User = get_user_model()
+
 
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=255)
-    #slug = models.SlugField(max_length=222, unique=True)
 
     class Meta:
         verbose_name_plural = 'categories'
@@ -17,13 +21,16 @@ class Product(models.Model):
     size = models.CharField(max_length=10)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     description = models.TextField()
-    # image = models.ImageField(upload_to='images/')
-    # slug = models.SlugField(max_length=255)
-    #in_stock?
+
+    def __str__(self):
+        return self.name
 
 class Meta:
     verbose_name_plural = 'Products'
 
 
-# class User(models.Model):
-#     pass
+
+class Order(models.Model):
+    customer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    quantity = models.IntegerField(default=0, null=True)
+
