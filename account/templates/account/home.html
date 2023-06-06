@@ -6,11 +6,11 @@
 </head>
 <body>
 
-    { % if user.is_authenticated % }
+    {% if user.is_authenticated %}
         <h2>Witaj!</h2> {{ user }}
-    { % else % }
+    {% else %}
         <a href="{% url 'account:login_view' %}"><button>Zaloguj się</button></a>
-    { % endif % }
+    {% endif %}
 
 
 </body>

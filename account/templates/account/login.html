@@ -6,8 +6,10 @@
 </head>
 <body>
 
-
-    <form method="POST"> {% csrf_token %}
+    {% if user.is_authenticated %}
+        <h2>Jesteś zalogowany!</h2> {{ user }}
+    {% else %}
+            <form method="POST"> {% csrf_token %}
         <input type="text" name="username" placeholder="nazwa użytkownika">
         <input type="password" name="password" placeholder="hasło">
         <input type="submit" value="Zaloguj">
@@ -16,5 +18,7 @@
     <button>
         <a href="{% url 'account:register' %}">Zarejestruj</a>
     </button>
+    {% endif %}
+
 </body>
 </html>

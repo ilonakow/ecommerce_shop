@@ -31,7 +31,7 @@ def login_view(request):
         if user:
             login(request, user=user)
 
-        return redirect('account:home_view')
+        return redirect('shop:welcome')
 
 def register_view(request):
     if request.method == "GET":
@@ -55,4 +55,4 @@ def register_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('account:login')
+    return redirect('shop:welcome')
