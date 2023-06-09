@@ -4,30 +4,20 @@
 {% block content %}
 <h2>STRONA KATEGORII</h2>
 
-    <div class="row">
-        <div class="col-lg-4">
-            <img class="thumbnail" src="{% static 'images/placeholder.png' %}">
-            <div class="box-element product">
-                <h6><strong>Produkt</strong></h6>
-                <hr>
-            </div>
-        </div>
+<div class="row">
+    {% for product in products %}
+    <div class="col-lg-4">
+        {% if product.image %} <!--sprawdz czy obraz istnieje-->
+        <img class="thumbnail" src="{{product.image.url}}">
+        {% else %}
+        <img class="thumbnail" src="{% static 'images/image_placeholder.jpg' %}">
+        {% endif %}
 
-        <div class="col-lg-4">
-            <img class="thumbnail" src="{% static 'images/placeholder.png' %}">
-            <div class="box-element product">
-                <h6><strong>Produkt</strong></h6>
-                <hr>
-            </div>
+        <div class="box-element product">
+            <h6><strong>{{ product.name }}</strong></h6>
+            <hr>
         </div>
-
-        <div class="col-lg-4">
-            <img class="thumbnail" src="{% static 'images/placeholder.png' %}">
-            <div class="box-element product">
-                <h6><strong>Produkt</strong></h6>
-                <hr>
-            </div>
-        </div>
-
     </div>
+    {% endfor %}
+</div>
 {% endblock content %}

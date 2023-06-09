@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.shortcuts import HttpResponse
+from shop.models import *
 
 
 # Create your views here.
@@ -11,9 +11,13 @@ def welcome(request):
     )
 
 def category(request):
+    products = Product.objects.all()
+    print(products[0].image)
+    context = {'products':products}
     return render(
         request,
         'shop/category_page.html',
+        context
     )
 
 def product(request):

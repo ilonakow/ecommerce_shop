@@ -134,3 +134,6 @@ STATIC_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.User'             #wskazanie aby używał nowego a nie domyślnego, wbudowanego w django
+
+MEDIA_URL = '/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'shop/static/images')
