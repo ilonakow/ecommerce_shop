@@ -24,7 +24,13 @@ class Product(models.Model):
     image = models.ImageField(null=True)
     def __str__(self):
         return self.name
-
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = '/images/image_placeholder.jpg'
+        return url
 class Meta:
     verbose_name_plural = 'Products'
 

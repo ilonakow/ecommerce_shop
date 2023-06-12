@@ -7,16 +7,15 @@
 <div class="row">
     {% for product in products %}
     <div class="col-lg-4">
-        {% if product.image %} <!--sprawdz czy obraz istnieje-->
-        <img class="thumbnail" src="{{product.image.url}}">
-        {% else %}
-        <img class="thumbnail" src="{% static 'images/image_placeholder.jpg' %}">
-        {% endif %}
+        <a href="{% url 'shop:product' product.id %}">
+        <img class="thumbnail" src="{{product.imageURL}}">
+
 
         <div class="box-element product">
-            <h6><strong>{{ product.name }}</strong></h6>
+            <h6><strong>{{ product }}</strong></h6>
             <hr>
         </div>
+            </a>
     </div>
     {% endfor %}
 </div>
