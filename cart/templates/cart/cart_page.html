@@ -20,9 +20,10 @@
         <div style="flex:1"><strong>Razem</strong></div>
     </div>
 
+{% for order_line in order.orderline_set.all %}
     <div class="cart-row">
-            {% for order_line in order.orderline_set.all %}
-            <div style="flex:2"><img class="row-image" src="{{product.imageURL}}"></div>
+
+            <div style="flex:2"><img class="row-image" src="{{order_line.product.imageURL}}" alt="product_img"></div>
             <div style="flex:2"><p>{{order_line.product.name}}</p></div>
             <div style="flex:1"><p>{{order_line.product.price}}</p></div>
             <div style="flex:1">
@@ -33,15 +34,17 @@
 
             </div>
         </div>
-    {% endfor %}
 
-        <div style="flex:1"><p>100</p></div>
+
+        <div style="flex:1"><p>{{order_line.get_total}} zł</p></div>
     </div>
+    {% endfor %}
 </div>
+
 </div>
 
 <button>
-    <a class="btn btn-outline-dark" href="{% url 'shop:category' %}">&#x2190; Kontynuuj zakupy</a>
+    <a class="btn btn-outline-dark" href="{% url 'shop:category' %}"> Kontynuuj zakupy</a>
 </button>
 </div>
 {% endblock content %}
