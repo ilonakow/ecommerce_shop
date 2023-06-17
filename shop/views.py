@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from shop.models import *
 
 
@@ -19,14 +19,27 @@ def category(request):
         context
     )
 
+
 def product(request, my_pk):
-    # task = Task.objects.get(id=pk)
     product = get_object_or_404(Product, pk=my_pk)
 
-    return render(
-        request,
-        'shop/product_page.html',
-        context={
-            'product': product,
-        }
-    )
+    if request.method == "GET":
+        return render(
+            request,
+            'shop/product_page.html',
+            context={
+                'product': product,
+            }
+        )
+
+    elif request.method == "POST":
+        data = request.POST
+        quantity = data.get('quantity')
+
+        order = request.user.order_set.first()
+        order_line = order.products.add(
+            product,
+            through_defaults={'quantity': quantity}
+        )
+
+        return redirect('cart:cart')

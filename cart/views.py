@@ -5,7 +5,8 @@ from django.shortcuts import render
 
 
 def cart(request):
-    products = []
+    order = request.user.order_set.first()
+
     if request.method == "POST":
         data = request.POST
         if request.user.is_authenticated:
@@ -13,14 +14,12 @@ def cart(request):
                 customer=request.user
             )
 
-
             order.products.add(...)
 
 
     elif request.method=="GET":
-
         return render(
             request,
             'cart/cart_page.html',
-            context={'products': products}
+            context={'order': order}
         )

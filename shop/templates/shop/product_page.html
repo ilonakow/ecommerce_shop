@@ -26,8 +26,10 @@
         <p>Opis</p>
         {{product.description}}
         </div>
-
-        <a href="{% url 'cart:cart' %}" class="btn btn-warning">Dodaj do koszyka</a>
+<form method="POST"> {% csrf_token %}
+    <input type="number" min="1" placeholder="ilość" name="quantity" required>
+    <input type="submit" value="Dodaj do koszyka">
+</form>
     </div>
 
 {% endblock content %}
