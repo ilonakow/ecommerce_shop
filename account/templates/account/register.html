@@ -1,15 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+{% extends 'shop/main.html' %}
+
 <body>
+{% block content %}
+<div class="login-form">
+    <div class="content_login">
   <form method="POST">{% csrf_token %}
-    <input type="text" name="username" placeholder="username">
-    <input type="password" name="password1" placeholder="password">
-    <input type="password" name="password2" placeholder="password">
-    <input type="submit" value="Zarejestruj">
+ <input class="input_login" type="text" name="username" placeholder="nazwa użytkownika">
+  <br></br>
+        <input class="input_login"type="password" name="password" placeholder="hasło">
+                <br>
+      <input class="input_login"type="password" name="password" placeholder="potwierdź hasło">
+                <br>
+        <input class="login_button"type="submit" value="Zarejestruj">
+    </form>
+    </div>
+</div>
   </form>
+{% endblock content %}
 </body>
 </html>
