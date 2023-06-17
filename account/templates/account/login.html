@@ -1,24 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+{% extends 'shop/main.html' %}
 <body>
-
+{% block content %}
     {% if user.is_authenticated %}
         <h2>Jesteś zalogowany!</h2> {{ user }}
     {% else %}
+<div class="login-form">
+    <div class="content_login">
             <form method="POST"> {% csrf_token %}
-        <input type="text" name="username" placeholder="nazwa użytkownika">
-        <input type="password" name="password" placeholder="hasło">
-        <input type="submit" value="Zaloguj">
+        <input class="input_login" type="text" name="username" placeholder="nazwa użytkownika">
+                <br></br>
+        <input class="input_login"type="password" name="password" placeholder="hasło">
+                <br></br>
+        <input class="login_button"type="submit" value="Zaloguj">
     </form>
-
-    <button>
+    </div>
+        <p class="text_register">Nie masz konta?</p>
+    <button class="button_register">
         <a href="{% url 'account:register' %}">Zarejestruj</a>
     </button>
+</div>
     {% endif %}
-
+{% endblock content %}
 </body>
 </html>
