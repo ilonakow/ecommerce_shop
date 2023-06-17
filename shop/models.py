@@ -35,8 +35,12 @@ class Meta:
     verbose_name_plural = 'Products'
 
 
-
 class Order(models.Model):
     customer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    quantity = models.IntegerField(default=0, null=True)
+    products = models.ManyToManyField(Product, through='OrderLine')
+
+
+class OrderLine(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    quantity = models.IntegerField(default=0)
