@@ -22,7 +22,6 @@ def category(request):
 
 def product(request, my_pk):
     product = get_object_or_404(Product, pk=my_pk)
-
     if request.method == "GET":
         return render(
             request,
@@ -35,8 +34,8 @@ def product(request, my_pk):
     elif request.method == "POST":
         data = request.POST
         quantity = data.get('quantity')
-
         order = request.user.order_set.first()
+
         order_line = order.products.add(
             product,
             through_defaults={'quantity': quantity}
