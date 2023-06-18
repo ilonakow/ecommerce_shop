@@ -34,11 +34,24 @@ def product(request, my_pk):
     elif request.method == "POST":
         data = request.POST
         quantity = data.get('quantity')
+        print(request.user.order_set.all())
         order = request.user.order_set.first()
 
-        order_line = order.products.add(
-            product,
-            through_defaults={'quantity': quantity}
+        OrderLine.objects.update_or_create(
+            order=order,
+            product=product,
+            defaults={'quantity': quantity}
         )
 
+        # order_line = order.products.create(
+        #     product,
+        #     through_default={'quantity': quantity}
+        # )
+
         return redirect('cart:cart')
+
+def footer(request):
+    return render(
+        request,
+        'shop/footer.html',
+    )
